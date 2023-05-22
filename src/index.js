@@ -36,11 +36,14 @@ function handlerSearch(evt) {
             }
         })
             
-            .catch(err => console.error(err)) 
+            .catch(err =>  {
+            if (err.status = 404) {
+                    Notiflix.Notify.failure('Oops, there is no country with that name');
+                    
+                } console.error(err)
+            })
+            .finally(() => clearcountryInfo());
         }
-    
-    clearcountryInfo()
-    
 }
 
 function clearcountryInfo() {
@@ -55,14 +58,14 @@ function createMarkupForOneCountry(arr) {
     <h2>${name["official"]}</h2>
     <p>Capital: ${capital}</p>
     <p>Population: ${population}</p>
-    <p>Languages: ${Object.values(languages)}</p>
-</li>`).join('')
+    <p>Languages: ${Object.values(languages).join(', ')}</p>
+</li>`).join()
 }
 
 function createMarkupForFewCountry(arr) {
     return arr.map(({ name,  flags }) => `<li>
     <img src="${flags["svg"]}" width = 50>
     <h2>${name["official"]}</h2>
-</li>`).join('')
+</li>`).join()
 }
 

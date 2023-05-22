@@ -6,12 +6,9 @@ const BASE_URL = "https://restcountries.com/v3.1/name";
         return fetch(`${BASE_URL}/${country}`)
             .then(resp => {
                 console.log(resp);
-                if (resp.status_code === 404) {
+                if (!resp.ok) {
                     throw new Error(resp.statusText);
-                } else if (resp.status_code === 404) {
-                    Notiflix.Notify.failure('Oops, there is no country with that name');
-                    throw new Error();
-                }
+                } 
                 return resp.json() 
             })
             
