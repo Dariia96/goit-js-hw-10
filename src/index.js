@@ -40,12 +40,15 @@ function handlerSearch(evt) {
             if (err.status === `404`) {
                     Notiflix.Notify.failure('Oops, there is no country with that name');
                     clearcountryInfo()
-                } Notiflix.Notify.failure(err);
+                } Notiflix.Notify.failure('Oops, there is no country with that name');
                  console.error(err);
                  clearcountryInfo()
             })
             .finally();
-        }
+    }
+     else if (!input.value) {
+                clearcountryInfo()
+            }
 }
 
 function clearcountryInfo() {
